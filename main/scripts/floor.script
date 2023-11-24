@@ -1,0 +1,16 @@
+go.property("scroll_vel", 100)
+
+function init(self)
+	
+end
+
+function update(self, dt)
+	-- TODO: wrapping
+	new_position = go.get_position(floor)
+	new_position.x = new_position.x - self.scroll_vel * dt
+	go.set_position(new_position, floor)
+end
+
+function fixed_update(self, dt)
+
+end

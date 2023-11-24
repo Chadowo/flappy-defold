@@ -1,0 +1,34 @@
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	msg.post("@render:", "use_fixed_fit_projection", { near = -1, far = 1 })
+
+	-- Load the menu
+	msg.post('#menu_proxy', 'load')
+	self.game = false
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("proxy_loaded") then
+		-- New world is loaded. Init and enable it.
+		msg.post(sender, "init")
+		msg.post(sender, "enable")
+	end
+end
+
+function on_input(self, action_id, action)
+	-- Don't react to input at all when in-game
+	-- FIXME: I have a hunch this is isn't how people handle input on Defold
+	if self.game then
+		return false
+	end
+	
+	if action_id == hash("touch") and action.pressed then
+		msg.post("#menu_proxy", "disable")
+		msg.post("#menu_proxy", "final")
+		msg.post("#menu_proxy", "unload")
+
+		-- Load game
+		msg.post('#game_proxy', 'load')
+		self.game = true
+	end
+end
