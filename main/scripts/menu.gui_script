@@ -5,7 +5,7 @@ function init(self)
 	-- Animate the title back and forth
 	local title_node = gui.get_node('title')
 	gui.animate(title_node,
-				"position.y",
+				'position.y',
 				gui.get_position(title_node).y - MOVEMENT_DISTANCE,
 				gui.EASING_INOUTSINE,
 				1,
@@ -14,12 +14,7 @@ function init(self)
 				gui.PLAYBACK_LOOP_PINGPONG,
 				10)
 
-	-- TODO: Animate the background
-
 	-- Set the version number
 	local version_node = gui.get_node('version')
 	gui.set_text(version_node, 'v'..sys.get_config('project.version'))
-end
-
-function update(self, dt)
 end

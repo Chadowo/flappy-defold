@@ -12,6 +12,8 @@ use_accelerometer = 0
 [display]
 width = 1280
 height = 720
+high_dpi = 1
+display_device_info = 0
 
 [script]
 shared_state = 1
@@ -28,4 +30,10 @@ input_method = HiddenInputField
 [physics]
 gravity_y = -1000.0
 scale = 0.01
+
+[engine]
+run_while_iconified = 1
+
+[graphics]
+default_texture_min_filter = nearest
 

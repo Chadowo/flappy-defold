@@ -81,7 +81,7 @@ embedded_instances {
   }
 }
 embedded_instances {
-  id: "ui"
+  id: "interface"
   data: "components {\n"
   "  id: \"game\"\n"
   "  component: \"/main/ui/game.gui\"\n"
