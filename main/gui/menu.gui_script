@@ -1,0 +1,59 @@
+function init(self)
+	-- Animate the title and the bird
+	local title_node = gui.get_node('title')
+	gui.animate(title_node,
+				'position.y',
+				gui.get_position(title_node).y - 20,
+				gui.EASING_INOUTSINE,
+				1,
+				0,
+				nil,
+				gui.PLAYBACK_LOOP_PINGPONG,
+				10)
+
+	self.ground_instances = {}
+
+	local next_ground = gui.clone(gui.get_node('ground'))
+	local next_ground_pos = gui.get_position(next_ground)
+
+	next_ground_pos.x = sys.get_config_int('display.width')
+
+	gui.set_position(next_ground, next_ground_pos)
+	
+	table.insert(self.ground_instances, gui.get_node('ground'))
+	table.insert(self.ground_instances, next_ground)
+end
+
+function final(self)
+	-- Add finalization code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function move_ground(node, dt)
+	local pos = gui.get_position(node)
+	local size = gui.get_size(node)
+
+	pos.x = pos.x - 100 * dt
+
+	gui.set_position(node, pos)
+
+	-- Multiply because origin point and such I think
+	if pos.x + (size.x * 2) <= 0 then
+		pos.x = sys.get_config_int('display.width')
+		gui.set_position(node, pos)
+	end
+end
+
+function update(self, dt)
+	-- Move all the instances of ground node
+	for i, v in ipairs(self.ground_instances) do
+		move_ground(v, dt)
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	-- Add message-handling code here
+	-- Learn more: https://defold.com/manuals/message-passing/
+	-- Remove this function if not needed
+end

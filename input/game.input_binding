@@ -1,4 +1,8 @@
+key_trigger {
+  input: KEY_SPACE
+  action: "flap"
+}
 mouse_trigger {
   input: MOUSE_BUTTON_LEFT
-  action: "touch"
+  action: "flap"
 }
