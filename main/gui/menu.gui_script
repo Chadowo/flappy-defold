@@ -12,16 +12,9 @@ function init(self)
 				10)
 
 	self.ground_instances = {}
-
-	local next_ground = gui.clone(gui.get_node('ground'))
-	local next_ground_pos = gui.get_position(next_ground)
-
-	next_ground_pos.x = sys.get_config_int('display.width')
-
-	gui.set_position(next_ground, next_ground_pos)
 	
-	table.insert(self.ground_instances, gui.get_node('ground'))
-	table.insert(self.ground_instances, next_ground)
+	table.insert(self.ground_instances, gui.get_node('ground1'))
+	table.insert(self.ground_instances, gui.get_node('ground2'))
 end
 
 function final(self)
@@ -33,13 +26,14 @@ end
 function move_ground(node, dt)
 	local pos = gui.get_position(node)
 	local size = gui.get_size(node)
+	local scale = gui.get_scale(node)
 
 	pos.x = pos.x - 100 * dt
 
 	gui.set_position(node, pos)
 
 	-- Multiply because origin point and such I think
-	if pos.x + (size.x * 2) <= 0 then
+	if pos.x + (size.x * scale.x)< 0 then
 		pos.x = sys.get_config_int('display.width')
 		gui.set_position(node, pos)
 	end
