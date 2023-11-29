@@ -1,5 +1,26 @@
 function init(self)
 	defos.disable_window_resize() -- It will look wonky when resized to any desktop resolution
+
+	msg.post('.', 'acquire_input_focus')
+	load_menu(self)
+end
+
+function load_menu(self)
+	msg.post('#menuproxy', 'load')
+	msg.post('#menuproxy', 'enable')
+end
+
+function unload_menu(self)
+	msg.post('#menuproxy', 'unload')
+end
+	
+function load_game(self)
+	msg.post('#gameproxy', 'load')
+	msg.post('#gameproxy', 'enable')
+end
+
+function unload_game(self)
+	msg.post('#gameproxy', 'unload')
 end
 
 function final(self)
@@ -9,8 +30,8 @@ function update(self, dt)
 end
 
 function on_message(self, message_id, message, sender)
-end
-
-function on_input(self, action_id, action)
-
+	if message_id == hash('start_game') then
+		unload_menu(self)
+		load_game(self)
+	end
 end

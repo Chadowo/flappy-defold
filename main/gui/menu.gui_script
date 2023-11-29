@@ -1,4 +1,6 @@
 function init(self)
+	msg.post('.', 'acquire_input_focus')
+	
 	-- Animate the title and the bird
 	local title_node = gui.get_node('title')
 	gui.animate(title_node,
@@ -50,4 +52,13 @@ function on_message(self, message_id, message, sender)
 	-- Add message-handling code here
 	-- Learn more: https://defold.com/manuals/message-passing/
 	-- Remove this function if not needed
+end
+
+function on_input(self, action_id, action)
+	if action_id == hash('flap') and action.pressed then
+		print('x:'..action.x..'\n\ty:'..action.y)
+		if gui.pick_node(gui.get_node('start_button'), action.x, action.y) then
+			msg.post('main:/controller#controller', 'start_game')
+		end
+	end
 end
