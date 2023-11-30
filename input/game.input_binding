@@ -1,4 +1,16 @@
+key_trigger {
+  input: KEY_SPACE
+  action: "flap_key"
+}
+key_trigger {
+  input: KEY_ESC
+  action: "close"
+}
+key_trigger {
+  input: KEY_BACK
+  action: "back"
+}
 mouse_trigger {
-  input: MOUSE_BUTTON_LEFT
+  input: MOUSE_BUTTON_1
   action: "flap"
 }

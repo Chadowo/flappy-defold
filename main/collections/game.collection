@@ -5,7 +5,7 @@ instances {
   position {
     x: 178.0
     y: 428.0
-    z: 153.0
+    z: 1.0
   }
   rotation {
     x: 0.0
@@ -14,8 +14,108 @@ instances {
     w: 1.0
   }
   scale3 {
-    x: 1.0
-    y: 1.0
+    x: 2.0
+    y: 2.0
+    z: 1.0
+  }
+}
+instances {
+  id: "ground1"
+  prototype: "/main/go/ground.go"
+  position {
+    x: 193.0
+    y: 64.0
+    z: 3.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 2.3
+    y: 2.3
+    z: 1.0
+  }
+}
+instances {
+  id: "background"
+  prototype: "/main/go/background.go"
+  position {
+    x: 180.0
+    y: 320.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 2.506877
+    y: 2.506877
+    z: 1.0
+  }
+}
+instances {
+  id: "ground2"
+  prototype: "/main/go/ground.go"
+  position {
+    x: 579.0
+    y: 64.0
+    z: 3.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 2.3
+    y: 2.3
+    z: 1.0
+  }
+}
+instances {
+  id: "pipe1"
+  prototype: "/main/go/pipe.go"
+  position {
+    x: 563.0
+    y: 688.0
+    z: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 2.0
+    y: 2.0
+    z: 1.0
+  }
+}
+instances {
+  id: "pipe2"
+  prototype: "/main/go/pipe.go"
+  position {
+    x: 563.0
+    y: 177.0
+    z: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 2.0
+    y: -2.0
     z: 1.0
   }
 }
@@ -43,7 +143,7 @@ embedded_instances {
   position {
     x: 0.0
     y: 0.0
-    z: 0.0
+    z: 3.0
   }
   rotation {
     x: 0.0

@@ -1,6 +1,8 @@
 function init(self)
-	defos.disable_window_resize() -- It will look wonky when resized to any desktop resolution
-
+	if sys.get_sys_info().system_name ~= 'Android' then
+		defos.disable_window_resize() -- It will look wonky when resized to any desktop resolution
+	end
+	
 	msg.post('.', 'acquire_input_focus')
 	load_menu(self)
 end
@@ -33,5 +35,13 @@ function on_message(self, message_id, message, sender)
 	if message_id == hash('start_game') then
 		unload_menu(self)
 		load_game(self)
+	end
+
+	if message_id == hash('pause') then
+		if message[1] then
+			msg.post('#gameproxy', 'set_time_step', {factor = 0, mode = 1})
+		else 
+			msg.post('#gameproxy', 'set_time_step', {factor = 1, mode = 1})
+		end
 	end
 end

@@ -1,0 +1,38 @@
+local GRAVITY = 100
+
+function init(self)
+	self.y_vel = 0
+	self.score = 0
+
+	msg.post('.', 'acquire_input_focus')
+end
+
+function update_score(self)
+	msg.post('/interface', 'set_score', {self.score})
+end
+
+function update(self, dt)
+	-- TODO: Maybe it'll be better to update the score only when it changes
+	update_score(self)
+
+	local pos = go.get_position()
+	pos.y = pos.y + self.y_vel * dt
+
+	self.y_vel = self.y_vel - 850 * dt
+	
+	go.set_position(pos)
+end
+
+function on_message(self, message_id, message, sender)
+	-- Add message-handling code here
+	-- Learn more: https://defold.com/manuals/message-passing/
+	-- Remove this function if not needed
+end
+
+function on_input(self, action_id, action)
+	if action_id == hash('flap') or action_id == hash('flap_key') then
+		if action.pressed then
+			self.y_vel = 280
+		end
+	end
+end

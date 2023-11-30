@@ -1,6 +1,6 @@
 components {
-  id: "bird"
-  component: "/main/scripts/bird.script"
+  id: "ground"
+  component: "/main/scripts/ground.script"
   position {
     x: 0.0
     y: 0.0
@@ -17,7 +17,7 @@ embedded_components {
   id: "sprite"
   type: "sprite"
   data: "tile_set: \"/assets/textures.atlas\"\n"
-  "default_animation: \"flappy_bird\"\n"
+  "default_animation: \"ground\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
   ""

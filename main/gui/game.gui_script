@@ -1,0 +1,38 @@
+function init(self)
+	msg.post('.', 'acquire_input_focus')
+	
+	self.pause = false
+end
+
+function pause_game(self)
+	self.pause = not self.pause
+	if self.pause then
+		msg.post('main:/controller#controller', 'pause', {true})
+		gui.play_flipbook(gui.get_node('pause_button'), 'button_resume')
+	else
+		msg.post('main:/controller#controller', 'pause', {false})
+		gui.play_flipbook(gui.get_node('pause_button'), 'button_pause')
+	end
+end
+
+function update(self, dt)
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash('set_score') then
+		local label = gui.get_node('score')
+		gui.set_text(label, message[1])
+	end
+end
+
+function on_input(self, action_id, action)
+	if action_id == hash('flap') and action.pressed then
+		if gui.pick_node(gui.get_node('pause_button'), action.x, action.y) then
+			pause_game(self)
+		end
+	elseif action_id == hash('close') or action_id == hash('back') then
+		if action.pressed then
+			pause_game(self)
+		end
+	end
+end

@@ -1,4 +1,64 @@
 name: "menu"
+instances {
+  id: "background"
+  prototype: "/main/go/background.go"
+  position {
+    x: 180.0
+    y: 320.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 2.506877
+    y: 2.506877
+    z: 1.0
+  }
+}
+instances {
+  id: "ground1"
+  prototype: "/main/go/ground.go"
+  position {
+    x: 193.0
+    y: 64.0
+    z: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 2.3
+    y: 2.3
+    z: 1.0
+  }
+}
+instances {
+  id: "ground2"
+  prototype: "/main/go/ground.go"
+  position {
+    x: 579.0
+    y: 64.0
+    z: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 2.3
+    y: 2.3
+    z: 1.0
+  }
+}
 scale_along_z: 0
 embedded_instances {
   id: "interface"
@@ -23,7 +83,7 @@ embedded_instances {
   position {
     x: 0.0
     y: 0.0
-    z: 0.0
+    z: 1.0
   }
   rotation {
     x: 0.0
@@ -34,6 +94,6 @@ embedded_instances {
   scale3 {
     x: 1.0
     y: 1.0
-    z: 1.0
+    z: -0.850847
   }
 }

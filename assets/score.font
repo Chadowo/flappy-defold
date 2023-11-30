@@ -1,6 +1,6 @@
 font: "/assets/fonts/score.ttf"
 material: "/builtins/fonts/font-df.material"
-size: 18
+size: 42
 antialias: 0
 alpha: 1.0
 outline_alpha: 0.0
