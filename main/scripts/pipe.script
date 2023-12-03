@@ -1,50 +1,58 @@
+go.property('gives_score', true)
+go.property('scroll_speed', 150)
+
 function init(self)
-	-- Add initialization code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
+	self.scored = false
+	self.stop = false
 end
-
-function move_pipe(dt)
+	
+function move_pipe(self, dt)
 	local pos = go.get_position()
+	local size = go.get('#sprite', 'size')
+	local scale = go.get_scale()
 
-	pos.x = pos.x - 100 * dt
+	pos.x = pos.x - self.scroll_speed * dt
 
 	go.set_position(pos)
 end
-	
-function update(self, dt)
-	move_pipe(dt)
+
+function player_score(self)
+	local player_pos = go.get_position('/bird')
+	local pos = go.get_position()
+
+	if player_pos.x > pos.x and not self.scored and self.gives_score then
+		self.scored = true
+		msg.post('/bird', 'gained_score')
+	end
 end
 
-function fixed_update(self, dt)
-	-- This function is called if 'Fixed Update Frequency' is enabled in the Engine section of game.project
-	-- Can be coupled with fixed updates of the physics simulation if 'Use Fixed Timestep' is enabled in
-	-- Physics section of game.project
-	-- Add update code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
+-- Kill the player when it is above the screen trying to 
+-- pass the pipe
+function player_offbounds()
+	local player_id = go.get_id('/bird')
+	local player_pos = go.get_position('/bird')
+	local player_scale = go.get_scale(player_id)
+	local player_size = go.get('/bird#sprite', 'size')
+	
+	local pos = go.get_position()
+
+	if player_pos.y + (player_size.y * player_size.y) / 2 > sys.get_config_int('display.height') then
+		if player_pos.x >= pos.x then
+			msg.post('/bird', 'dead')
+		end
+	end
+end
+	
+function update(self, dt)
+	if self.stop then return end
+	
+	move_pipe(self, dt)
+	player_score(self)
+	player_offbounds()
 end
 
 function on_message(self, message_id, message, sender)
-	-- Add message-handling code here
-	-- Learn more: https://defold.com/manuals/message-passing/
-	-- Remove this function if not needed
-end
-
-function on_input(self, action_id, action)
-	-- Add input-handling code here. The game object this script is attached to
-	-- must have acquired input focus:
-	--
-	--    msg.post(".", "acquire_input_focus")
-	--
-	-- All mapped input bindings will be received. Mouse and touch input will
-	-- be received regardless of where on the screen it happened.
-	-- Learn more: https://defold.com/manuals/input/
-	-- Remove this function if not needed
-end
-
-function on_reload(self)
-	-- Add reload-handling code here
-	-- Learn more: https://defold.com/manuals/hot-reload/
-	-- Remove this function if not needed
+	if message_id == hash('stop') then
+		self.stop = true
+	end
 end

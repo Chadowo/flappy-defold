@@ -1,7 +1,13 @@
 function init(self)
 	msg.post('.', 'acquire_input_focus')
+
+	self.nodes = {}
+	table.insert(self.nodes, gui.get_node('score'))
+	table.insert(self.nodes, gui.get_node('pause_button'))
 	
 	self.pause = false
+
+	self.game_over = false
 end
 
 function pause_game(self)
@@ -15,7 +21,12 @@ function pause_game(self)
 	end
 end
 
-function update(self, dt)
+function end_game(self)
+	self.game_over = true
+	
+	for i, v in ipairs(self.nodes) do
+		gui.animate(v, 'color.w', 0, gui.EASING_LINEAR, 0.2)
+	end
 end
 
 function on_message(self, message_id, message, sender)
@@ -23,9 +34,17 @@ function on_message(self, message_id, message, sender)
 		local label = gui.get_node('score')
 		gui.set_text(label, message[1])
 	end
+
+	if message_id == hash('end_game') then
+		end_game(self)
+	end
 end
 
 function on_input(self, action_id, action)
+	if self.game_over then
+		return 
+	end
+	
 	if action_id == hash('flap') and action.pressed then
 		if gui.pick_node(gui.get_node('pause_button'), action.x, action.y) then
 			pause_game(self)

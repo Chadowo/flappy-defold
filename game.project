@@ -29,3 +29,7 @@ default_texture_mag_filter = nearest
 [windows]
 app_icon = /assets/icon/icon.ico
 
+[physics]
+debug = 0
+debug_alpha = 0.5
+

@@ -19,10 +19,6 @@ images {
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/assets/sprites/made_with_defold.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
   image: "/assets/sprites/button_resume.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
@@ -36,6 +32,46 @@ images {
 }
 images {
   image: "/assets/sprites/pipe_green_bottom.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/assets/sprites/label_game_over.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/assets/sprites/panel_score.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/assets/sprites/button_ok.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/assets/bundle/android/res/mipmap-hdpi/ic_launcher_bg.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/assets/sprites/medal_bronze.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/assets/sprites/medal_gold.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/assets/sprites/medal_platinum.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/assets/sprites/medal_silver.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/assets/sprites/label_new.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/assets/sprites/button_menu.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 animations {
@@ -53,7 +89,22 @@ animations {
     sprite_trim_mode: SPRITE_TRIM_MODE_OFF
   }
   playback: PLAYBACK_LOOP_FORWARD
-  fps: 3
+  fps: 13
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "spark"
+  images {
+    image: "/assets/sprites/spark_1.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/sprites/spark_2.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 2
   flip_horizontal: 0
   flip_vertical: 0
 }

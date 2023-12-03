@@ -1,0 +1,52 @@
+go.property('spawn_interval', 1.2)
+
+function init(self)
+	self.spawn_timer = timer.delay(self.spawn_interval, true, spawn_pipes)
+	self.instances = {}
+end
+
+function spawn_pipes(self)
+	local top_pos = go.get_position()
+	top_pos.y = math.random(600, 700) -- Randomize the position of the first pipe
+	
+	local top_pipe = factory.create('#factory', top_pos, nil, nil, 2.0)
+
+	local bottom_props = {gives_score = false}
+	local bottom_pos = go.get_position()
+	bottom_pos.y = top_pos.y - (160 * 2.0) - 95 -- Leave a gap of 95 pixels inbetween
+	
+	local bottom_pipe = factory.create('#factory', bottom_pos, nil, bottom_props, 2.0)
+	sprite.set_vflip(bottom_pipe, true)
+
+	table.insert(self.instances, top_pipe)
+	table.insert(self.instances, bottom_pipe)
+end
+
+-- Delete all pipes that are offscreen
+function delete_pipes(self)
+	for i, pipe in ipairs(self.instances) do
+		local pos = go.get_position(pipe)
+		local size = go.get(msg.url(nil, pipe, 'sprite'), 'size')
+		local scale = go.get_scale(pipe)
+
+		if pos.x + ((size.x * scale.x) / 2) < 0 then
+			go.delete(pipe)
+			table.remove(self.instances, i)
+		end
+	end
+end
+
+function update(self, dt)
+	delete_pipes(self)
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash('stop') then
+		-- Tell all the pipes to stop
+		for i, pipe in ipairs(self.instances) do
+			msg.post(msg.url(pipe), 'stop')
+		end
+
+		timer.cancel(self.spawn_timer)
+	end
+end

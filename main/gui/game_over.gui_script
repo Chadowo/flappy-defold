@@ -1,0 +1,70 @@
+function init(self)
+	msg.post('.', 'acquire_input_focus')
+	
+	self.started = false
+
+	gui.set_enabled(gui.get_node('root'), false)
+	gui.set_alpha(gui.get_node('title'), 0.0)
+	gui.set_alpha(gui.get_node('button'), 0.0)
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash('enable') then
+		gui.set_enabled(gui.get_node('root'), true)
+
+		-- Calculate the reward medal
+		-- FIXME: Isn't this too much? I mean the if chain
+		local score = tonumber(gui.get_text(gui.get_node('score')))
+		if score < 10 then -- None
+			gui.set_enabled(gui.get_node('medal'), false)
+			gui.set_enabled(gui.get_node('spark'), false)
+		elseif score >= 10 and  score < 20 then -- Bronze
+			-- Leave the medal as it is since the default texture
+			-- texture is bronze
+		elseif score >= 20 and score < 30 then -- Silver
+			gui.play_flipbook(gui.get_node('medal'), 'medal_silver')
+		elseif score >= 30 and score < 40 then -- Gold
+			gui.play_flipbook(gui.get_node('medal'), 'medal_gold')
+		elseif score >= 40 then -- Platinum
+			gui.play_flipbook(gui.get_node('medal'), 'medal_platinum')
+		end
+		
+		-- Load highscore
+		local save_file = sys.get_save_file('flappydefold', 'data')
+		local data = sys.load(save_file)
+		if data[1] then
+			gui.set_text(gui.get_node('highscore'), data[1])
+		end
+
+		gui.animate(gui.get_node('title'), 'color.w', 1, gui.EASING_LINEAR, 0.2)
+		gui.animate(gui.get_node('panel'), 'position.y', 40, gui.EASING_OUTCUBIC, 0.6, 0.2)
+		gui.animate(gui.get_node('button'), 'color.w', 
+					1, gui.EASING_LINEAR,
+					0.5, 0.8,
+					function() self.started = true end)
+	end
+
+	if message_id == hash('set_score') then
+		gui.set_text(gui.get_node('score'), message[1])
+	end
+
+	if message_id == hash('new_highscore') then
+		gui.set_enabled(gui.get_node('label_new'), true)
+	end
+end
+
+function on_input(self, action_id, action)
+	if not self.started then
+		return
+	end
+	
+	if action_id == hash('flap') then
+		if gui.pick_node(gui.get_node('button'), action.x, action.y) then
+			if action.pressed then
+				msg.post('main:/controller#controller', 'player_dead')
+			end
+		end
+	elseif action_id == hash('flap_key') and action.pressed then
+		msg.post('main:/controller#controller', 'player_dead')
+	end
+end

@@ -25,10 +25,9 @@ function unload_game(self)
 	msg.post('#gameproxy', 'unload')
 end
 
-function final(self)
-end
-
-function update(self, dt)
+function go_to_menu(self)
+	unload_game(self)
+	load_menu(self)
 end
 
 function on_message(self, message_id, message, sender)
@@ -37,11 +36,16 @@ function on_message(self, message_id, message, sender)
 		load_game(self)
 	end
 
+	-- Handle pausing the game
 	if message_id == hash('pause') then
 		if message[1] then
 			msg.post('#gameproxy', 'set_time_step', {factor = 0, mode = 1})
 		else 
 			msg.post('#gameproxy', 'set_time_step', {factor = 1, mode = 1})
 		end
+	end
+
+	if message_id == hash('player_dead') then
+		go_to_menu(self)
 	end
 end
