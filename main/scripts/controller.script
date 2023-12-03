@@ -1,5 +1,6 @@
 function init(self)
-	if sys.get_sys_info().system_name ~= 'Android' then
+	local os = sys.get_sys_info().system_name
+	if os ~= 'Android' or os ~= 'HTML5' then
 		defos.disable_window_resize() -- It will look wonky when resized to any desktop resolution
 	end
 	
