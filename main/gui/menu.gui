@@ -1,4 +1,4 @@
-script: "/main/gui/menu.gui_script"
+script: "/main/scripts/gui/menu.gui_script"
 textures {
   name: "textures"
   texture: "/assets/textures.atlas"
