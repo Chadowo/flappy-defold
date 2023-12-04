@@ -24,4 +24,9 @@ function on_input(self, action_id, action)
 	elseif action_id == hash('flap_key') and action.pressed then
 		msg.post('main:/controller#controller', 'start_game')
 	end
+
+	-- Close the game
+	if action_id == hash('escape') or action_id == hash('back') then
+		msg.post('@system:', 'exit', {code = 0})
+	end
 end
