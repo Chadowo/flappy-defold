@@ -1,4 +1,5 @@
 go.property('spawn_interval', 1.2)
+go.property('gap_between_pipes', 100)
 
 function init(self)
 	self.spawn_timer = timer.delay(self.spawn_interval, true, spawn_pipes)
@@ -13,7 +14,7 @@ function spawn_pipes(self)
 
 	local bottom_props = {gives_score = false}
 	local bottom_pos = go.get_position()
-	bottom_pos.y = top_pos.y - (160 * 2.0) - 95 -- Leave a gap of 95 pixels inbetween
+	bottom_pos.y = top_pos.y - (160 * 2.0) - self.gap_between_pipes
 	
 	local bottom_pipe = factory.create('#factory', bottom_pos, nil, bottom_props, 2.0)
 	sprite.set_vflip(bottom_pipe, true) -- Invert vertically
