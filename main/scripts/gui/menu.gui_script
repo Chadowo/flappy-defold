@@ -12,8 +12,8 @@ function init(self)
 				nil,
 				gui.PLAYBACK_LOOP_PINGPONG,
 				10)
-			end
-			
+end
+
 function on_input(self, action_id, action)
 	if action_id == hash('flap_mouse') then
 		if gui.pick_node(gui.get_node('start_button'), action.x, action.y) then
@@ -27,6 +27,8 @@ function on_input(self, action_id, action)
 
 	-- Close the game
 	if action_id == hash('escape') or action_id == hash('back') then
-		msg.post('@system:', 'exit', {code = 0})
+		if sys.get_sys_info().system_name ~= 'HTML5' then
+			msg.post('@system:', 'exit', {code = 0})
+		end
 	end
 end
