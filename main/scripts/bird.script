@@ -47,11 +47,10 @@ function dead(self)
 	end
 
 	self.dead = true
+	msg.post('.', 'release_input_focus')
 end
 
 function flap(self)
-	if self.dead then return end
-	
 	sound.play('#flap_sound')
 	self.y_vel = self.flap_force
 end
@@ -86,7 +85,7 @@ function on_message(self, message_id, message, sender)
 	end
 
 	-- Received when trying to pass the pipes by going
-	-- offscreen
+	-- off screen
 	-- TODO: Refactor this
 	if message_id == hash('death_off_bounds') then
 		dead(self)
