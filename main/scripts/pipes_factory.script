@@ -7,7 +7,7 @@ end
 
 function spawn_pipes(self)
 	local top_pos = go.get_position()
-	top_pos.y = math.random(600, 700) -- Randomize the position of the first pipe
+	top_pos.y = math.random(500, 700) -- Randomize the position of the first pipe
 	
 	local top_pipe = factory.create('#factory', top_pos, nil, nil, 2.0)
 
