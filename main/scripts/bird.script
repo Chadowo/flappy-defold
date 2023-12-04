@@ -26,11 +26,11 @@ function dead(self)
 		msg.post('/pipes', 'stop')
 
 		-- Hide the game HUD
-		msg.post('/interface', 'end_game')
+		msg.post('/interface', 'disable')
 
 		-- Display the game over UI
-		msg.post('/interface_game_over', 'set_score', {self.score})
 		msg.post('/interface_game_over', 'enable')
+		msg.post('/interface_game_over', 'set_score', {self.score})
 
 		-- Save score
 		local save_file = sys.get_save_file('flappydefold', 'data')

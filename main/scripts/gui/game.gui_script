@@ -23,7 +23,7 @@ function pause_game(self)
 	msg.post('main:/controller#controller', 'pause', {self.pause})
 end
 
-function end_game(self)
+function disappear(self)
 	for i, v in ipairs(self.nodes) do
 		gui.animate(v, 'color.w', 0, gui.EASING_LINEAR, 0.2)
 	end
@@ -35,8 +35,8 @@ function on_message(self, message_id, message, sender)
 		gui.set_text(label, message[1])
 	end
 
-	if message_id == hash('end_game') then
-		end_game(self)
+	if message_id == hash('disable') then
+		disappear(self)
 		msg.post('.', 'release_input_focus')
 	end
 end
