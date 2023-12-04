@@ -6,7 +6,7 @@ function init(self)
 	msg.post('.', 'acquire_input_focus')
 	
 	self.y_vel = 0
-	self.score = 50
+	self.score = 0
 	self.dead = false
 end
 
