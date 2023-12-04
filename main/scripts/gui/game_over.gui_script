@@ -13,7 +13,7 @@ function on_message(self, message_id, message, sender)
 		gui.set_enabled(gui.get_node('root'), true)
 
 		-- Calculate the reward medal
-		-- FIXME: Isn't this too much? I mean the if chain
+		-- FIXME: Replace this if chain
 		local score = tonumber(gui.get_text(gui.get_node('score')))
 		if score < 10 then -- None
 			gui.set_enabled(gui.get_node('medal'), false)
