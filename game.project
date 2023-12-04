@@ -36,4 +36,5 @@ debug_alpha = 0.5
 [html5]
 cssfile = /builtins/manifests/web/dark_theme.css
 show_fullscreen_button = 0
+scale_mode = fit
 
