@@ -4,7 +4,7 @@ key_trigger {
 }
 key_trigger {
   input: KEY_ESC
-  action: "close"
+  action: "escape"
 }
 key_trigger {
   input: KEY_BACK
@@ -12,5 +12,5 @@ key_trigger {
 }
 mouse_trigger {
   input: MOUSE_BUTTON_1
-  action: "flap"
+  action: "flap_mouse"
 }

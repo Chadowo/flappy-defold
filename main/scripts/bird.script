@@ -93,7 +93,7 @@ function on_message(self, message_id, message, sender)
 end
 
 function on_input(self, action_id, action)
-	if action_id == hash('flap') or action_id == hash('flap_key') then
+	if action_id == hash('flap_mouse') or action_id == hash('flap_key') then
 		if action.pressed then
 			flap(self)
 		end

@@ -58,7 +58,7 @@ function on_input(self, action_id, action)
 		return
 	end
 	
-	if action_id == hash('flap') then
+	if action_id == hash('flap_mouse') then
 		if gui.pick_node(gui.get_node('button'), action.x, action.y) then
 			if action.pressed then
 				msg.post('main:/controller#controller', 'player_dead')
