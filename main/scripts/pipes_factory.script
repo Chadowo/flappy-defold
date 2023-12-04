@@ -9,8 +9,11 @@ function init(self)
 end
 
 function spawn_pipes(self)
+	-- Use the fractional part of socket
+	-- https://forum.defold.com/t/big-list-of-defold-pro-tips/1519/100
+	math.randomseed(100000 * (socket.gettime() % 1))
+	
 	local top_pos = go.get_position()
-	math.randomseed(os.time())
 	top_pos.y = math.random(500, 700) -- Randomize the position of the first pipe
 	
 	local top_pipe = factory.create('#factory', top_pos, nil, nil, 2.0)
