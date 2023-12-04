@@ -88,7 +88,7 @@ function on_message(self, message_id, message, sender)
 	-- Received when trying to pass the pipes by going
 	-- offscreen
 	-- TODO: Refactor this
-	if message_id == hash('dead') then
+	if message_id == hash('death_off_bounds') then
 		dead(self)
 	end
 end

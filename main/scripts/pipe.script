@@ -28,17 +28,20 @@ end
 
 -- Kill the player when it is above the screen trying to 
 -- pass the pipe
-function player_offbounds()
+function check_player_bounds()
 	local player_id = go.get_id('/bird')
 	local player_pos = go.get_position('/bird')
 	local player_scale = go.get_scale(player_id)
 	local player_size = go.get('/bird#sprite', 'size')
+
+	local player_width = (player_size.x * player_scale.x) / 2
+	local player_height = (player_size.y * player_scale.y) / 2
 	
 	local pos = go.get_position()
 
-	if player_pos.y + (player_size.y * player_size.y) / 2 > sys.get_config_int('display.height') then
-		if player_pos.x >= pos.x then
-			msg.post('/bird', 'dead')
+	if player_pos.y - player_height > sys.get_config_int('display.height') then
+		if player_pos.x + player_width >= pos.x then
+			msg.post('/bird', 'death_off_bounds')
 		end
 	end
 end
@@ -48,7 +51,7 @@ function update(self, dt)
 	
 	move_pipe(self, dt)
 	player_score(self)
-	player_offbounds()
+	check_player_bounds()
 end
 
 function on_message(self, message_id, message, sender)
