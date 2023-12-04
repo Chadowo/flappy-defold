@@ -12,14 +12,15 @@ end
 function pause_game(self)
 	self.pause = not self.pause
 
+	-- Handle the sprite used
 	local pause_node = gui.get_node('pause_button')
-	if self.pause then
-		msg.post('main:/controller#controller', 'pause', {true})
+	if self.pause then	
 		gui.play_flipbook(pause_node, 'button_resume')
 	else
-		msg.post('main:/controller#controller', 'pause', {false})
 		gui.play_flipbook(pause_node, 'button_pause')
 	end
+
+	msg.post('main:/controller#controller', 'pause', {self.pause})
 end
 
 function end_game(self)
