@@ -6,7 +6,7 @@ function init(self)
 	msg.post('.', 'acquire_input_focus')
 	
 	self.y_vel = 0
-	self.score = 0
+	self.score = 50
 	self.dead = false
 end
 
@@ -29,8 +29,8 @@ function dead(self)
 		msg.post('/interface', 'disable')
 
 		-- Display the game over UI
+		msg.post('/interface_game_over', 'set_score', {self.score}) -- First set score so it can calculate the medal
 		msg.post('/interface_game_over', 'enable')
-		msg.post('/interface_game_over', 'set_score', {self.score})
 
 		-- Save score
 		local save_file = sys.get_save_file('flappydefold', 'data')
