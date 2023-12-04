@@ -1,3 +1,5 @@
+local hashes = require('main/modules/hashes')
+
 function init(self)
 	local os = sys.get_sys_info().system_name
 	if os ~= 'Android' or os ~= 'HTML5' then
@@ -26,27 +28,31 @@ function unload_game(self)
 	msg.post('#gameproxy', 'unload')
 end
 
+function go_to_game(self)
+	unload_menu(self)
+	load_game(self)
+end
+
 function go_to_menu(self)
 	unload_game(self)
 	load_menu(self)
 end
 
 function on_message(self, message_id, message, sender)
-	if message_id == hash('start_game') then
-		unload_menu(self)
-		load_game(self)
+	if message_id == hashes.START_GAME then
+		go_to_game(self)
+	end
+
+	if message_id == hashes.END_GAME then
+		go_to_menu(self)
 	end
 
 	-- Handle pausing the game
-	if message_id == hash('pause') then
+	if message_id == hashes.PAUSE then
 		if message[1] then
 			msg.post('#gameproxy', 'set_time_step', {factor = 0, mode = 1})
 		else 
 			msg.post('#gameproxy', 'set_time_step', {factor = 1, mode = 1})
 		end
-	end
-
-	if message_id == hash('player_dead') then
-		go_to_menu(self)
 	end
 end

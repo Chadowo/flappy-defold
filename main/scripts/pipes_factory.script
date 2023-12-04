@@ -1,3 +1,5 @@
+local hashes = require('main/modules/hashes')
+
 go.property('spawn_interval', 1.2)
 go.property('gap_between_pipes', 100)
 
@@ -43,10 +45,10 @@ function update(self, dt)
 end
 
 function on_message(self, message_id, message, sender)
-	if message_id == hash('stop') then
+	if message_id == hashes.STOP then
 		-- Tell all the pipes to stop
 		for i, pipe in ipairs(self.instances) do
-			msg.post(msg.url(pipe), 'stop')
+			msg.post(msg.url(pipe), hashes.STOP)
 		end
 
 		timer.cancel(self.spawn_timer)

@@ -1,3 +1,5 @@
+local hashes = require('main/modules/hashes')
+
 go.property('scroll_speed', 150)
 
 function init(self)
@@ -27,7 +29,7 @@ function update(self, dt)
 end
 
 function on_message(self, message_id, message, sender)
-	if message_id == hash('stop') then
+	if message_id == hashes.STOP then
 		self.stop = true
 	end
 end

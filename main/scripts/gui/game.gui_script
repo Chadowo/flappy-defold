@@ -1,3 +1,5 @@
+local hashes = require('main/modules/hashes')
+
 function init(self)
 	msg.post('.', 'acquire_input_focus')
 
@@ -25,30 +27,30 @@ end
 
 function disappear(self)
 	for i, v in ipairs(self.nodes) do
-		gui.animate(v, 'color.w', 0, gui.EASING_LINEAR, 0.2)
+		gui.animate(v, 'color.w', 0, gui.EASING_LINEAR, 0.3)
 	end
 end
 
 function on_message(self, message_id, message, sender)
-	if message_id == hash('set_score') then
+	if message_id == hashes.SET_SCORE then
 		local label = gui.get_node('score')
 		gui.set_text(label, message[1])
 	end
 
-	if message_id == hash('disable') then
+	if message_id == hashes.DISAPPEAR then
 		disappear(self)
 		msg.post('.', 'release_input_focus')
 	end
 end
 
 function on_input(self, action_id, action)
-	if action_id == hash('flap_mouse') and action.pressed then
+	if action_id == hashes.FLAP_MOUSE and action.pressed then
 		if gui.pick_node(gui.get_node('pause_button'), action.x, action.y) then
 			pause_game(self)
 			return true -- Consume input so clicking on the pause button
 						-- won't make a flap
 		end
-	elseif action_id == hash('escape') or action_id == hash('back') then
+	elseif action_id == hashes.ESCAPE or action_id == hashes.BACK then
 		if action.pressed then
 			pause_game(self)
 			return true

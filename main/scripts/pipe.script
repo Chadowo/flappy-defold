@@ -1,3 +1,5 @@
+local hashes = require('main/modules/hashes')
+
 go.property('gives_score', true)
 go.property('scroll_speed', 150)
 
@@ -22,7 +24,7 @@ function player_score(self)
 
 	if player_pos.x > pos.x and not self.scored and self.gives_score then
 		self.scored = true
-		msg.post('/bird', 'gained_score')
+		msg.post('/bird', hashes.GAINED_SCORE)
 	end
 end
 
@@ -41,7 +43,7 @@ function check_player_bounds()
 
 	if player_pos.y - player_height > sys.get_config_int('display.height') then
 		if player_pos.x + player_width >= pos.x then
-			msg.post('/bird', 'death_off_bounds')
+			msg.post('/bird', hashes.DEATH_OFF_BOUNDS)
 		end
 	end
 end
@@ -55,7 +57,7 @@ function update(self, dt)
 end
 
 function on_message(self, message_id, message, sender)
-	if message_id == hash('stop') then
+	if message_id == hashes.STOP then
 		self.stop = true
 	end
 end
