@@ -1,7 +1,7 @@
 local hashes = require('main/modules/hashes')
 
 go.property('spawn_interval', 1.2)
-go.property('gap_between_pipes', 100)
+go.property('gap_between_pipes', 110)
 
 function init(self)
 	self.spawn_timer = timer.delay(self.spawn_interval, true, spawn_pipes)
@@ -9,7 +9,7 @@ function init(self)
 end
 
 function spawn_pipes(self)
-	-- Use the fractional part of socket
+	-- Use the fractional part of socket.gettime()
 	-- https://forum.defold.com/t/big-list-of-defold-pro-tips/1519/100
 	math.randomseed(100000 * (socket.gettime() % 1))
 	
