@@ -12,7 +12,7 @@ function init(self)
 	self.dead = false
 end
 
-function dead(self)
+function death(self)
 	if not self.dead then -- To avoid playing the sound infinitively
 		sound.play('#hit_sound')
 
@@ -78,7 +78,7 @@ end
 	
 function on_message(self, message_id, message, sender)
 	if message_id == hashes.COLLISION_RESPONSE then
-		dead(self)
+		death(self)
 	end
 
 	if message_id == hashes.GAINED_SCORE then
@@ -90,7 +90,7 @@ function on_message(self, message_id, message, sender)
 	-- off screen
 	-- TODO: Refactor this
 	if message_id == hashes.DEATH_OFF_BOUNDS then
-		dead(self)
+		death(self)
 	end
 end
 
