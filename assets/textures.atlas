@@ -47,10 +47,6 @@ images {
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/assets/bundle/android/res/mipmap-hdpi/ic_launcher_bg.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
   image: "/assets/sprites/medal_bronze.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
