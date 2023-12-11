@@ -14,6 +14,9 @@ function init(self)
 				nil,
 				gui.PLAYBACK_LOOP_PINGPONG,
 				10)
+
+	-- Set the version
+	gui.set_text(gui.get_node('version'), 'v'..sys.get_config('project.version'))
 end
 
 function on_input(self, action_id, action)
