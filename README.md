@@ -1,8 +1,7 @@
 # Flappy Defold
 
 Flappy Bird made in [Defold](https://defold.com/). Also my first game ever in this engine, so
-the implementation may be sloppy, I don't know yet most of the common practices and such for
-Defold.
+the implementation may be sloppy.
 
 ## How to Load
 
