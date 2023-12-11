@@ -19,6 +19,7 @@ function on_message(self, message_id, message, sender)
 		local score = tonumber(gui.get_text(gui.get_node('score')))
 		if score < 10 then -- None
 			gui.set_enabled(gui.get_node('medal'), false)
+			-- TODO: randomize position on animation loop
 			gui.set_enabled(gui.get_node('spark'), false)
 		elseif score >= 10 and  score < 20 then -- Bronze
 			-- Leave the medal as it is since the default texture
