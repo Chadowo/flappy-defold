@@ -8,7 +8,7 @@ function init(self)
 	msg.post('.', 'acquire_input_focus')
 	
 	self.y_vel = 0
-	self.score = 0
+	self.score = 8
 	self.dead = false
 end
 
@@ -44,6 +44,7 @@ function death(self)
 				sys.save(save_file, {self.score})
 			end
 		else
+			msg.post('/interface_game_over', hashes.NEW_HIGHSCORE)
 			sys.save(save_file, {self.score}) -- Save the score anyway since it'll mean the highscore isn't set
 		end
 	end
