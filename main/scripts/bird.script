@@ -1,15 +1,32 @@
 local hashes = require('main/modules/hashes')
 
-go.property('gravity', 650) -- TODO: not quite sure if this is qualifies as gravity
+go.property('gravity', 650) 
 go.property('max_falling_speed', 500)
 go.property('flap_force', 280)
 
+go.property('upwards_rotation_speed', 450)
+go.property('downwards_rotation_speed', 200)
+
+-- Clamp a number
+local function clamp(num, min, max)
+	if num < min then
+		num = min
+	elseif num > max then
+		num = max
+	end
+
+	return num
+end
+
 function init(self)
 	msg.post('.', 'acquire_input_focus')
-	
+
+	self.rotation = 0
 	self.y_vel = 0
-	self.score = 8
+	self.score = 0
 	self.dead = false
+
+	go.set('.', 'euler.z', self.rotation)
 end
 
 function death(self)
@@ -58,6 +75,20 @@ function flap(self)
 	self.y_vel = self.flap_force
 end
 
+function falling(self)
+	return self.y_vel < 0
+end
+
+function rotate(self, dt)
+	if self.y_vel > 0 then 
+		self.rotation = self.rotation + self.upwards_rotation_speed * dt
+	elseif falling(self) then
+		self.rotation = self.rotation - self.downwards_rotation_speed * dt
+	end
+
+	go.set('.', 'euler.z', self.rotation)
+end
+
 function update_score(self)
 	msg.post('/interface', hashes.SET_SCORE, {self.score})
 end
@@ -70,8 +101,11 @@ function update(self, dt)
 	if self.y_vel > -self.max_falling_speed then
 		self.y_vel = self.y_vel - self.gravity * dt 
 	end
-	
+
+	rotate(self, dt)
 	go.set_position(pos)
+
+	self.rotation = clamp(self.rotation, -90, 25)
 
 	-- TODO: Maybe it'll be better to update the score only when it changes
 	update_score(self)
