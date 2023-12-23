@@ -60,9 +60,11 @@ function death(self)
 				msg.post('/interface_game_over', hashes.NEW_HIGHSCORE)
 				sys.save(save_file, {self.score})
 			end
-		else
-			msg.post('/interface_game_over', hashes.NEW_HIGHSCORE)
-			sys.save(save_file, {self.score}) -- Save the score anyway since it'll mean the highscore isn't set
+		else -- There's no score
+			if self.score > 0 then
+				msg.post('/interface_game_over', hashes.NEW_HIGHSCORE)
+				sys.save(save_file, {self.score})
+			end
 		end
 	end
 
