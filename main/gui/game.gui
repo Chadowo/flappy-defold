@@ -1,11 +1,11 @@
 script: "/main/scripts/gui/game.gui_script"
 fonts {
   name: "score"
-  font: "/assets/score.font"
+  font: "/assets/fonts/score.font"
 }
 textures {
-  name: "textures"
-  texture: "/assets/textures.atlas"
+  name: "gui"
+  texture: "/assets/atlas/gui.atlas"
 }
 background_color {
   x: 0.0
@@ -112,7 +112,7 @@ nodes {
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: "textures/button_pause"
+  texture: "gui/button_pause"
   id: "pause_button"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE

@@ -1,9 +1,13 @@
 images {
-  image: "/assets/sprites/background_day.png"
+  image: "/assets/sprites/button_menu.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/assets/sprites/label_flappy_bird.png"
+  image: "/assets/sprites/button_ok.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/assets/sprites/button_pause.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
@@ -15,23 +19,11 @@ images {
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/assets/sprites/ground.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
   image: "/assets/sprites/button_resume.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/assets/sprites/button_pause.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
-  image: "/assets/sprites/pipe_green_top.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
-  image: "/assets/sprites/pipe_green_bottom.png"
+  image: "/assets/sprites/label_flappy_bird.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
@@ -39,11 +31,11 @@ images {
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/assets/sprites/panel_score.png"
+  image: "/assets/sprites/label_get_ready.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/assets/sprites/button_ok.png"
+  image: "/assets/sprites/label_new.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
@@ -63,31 +55,8 @@ images {
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/assets/sprites/label_new.png"
+  image: "/assets/sprites/panel_score.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
-  image: "/assets/sprites/button_menu.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-animations {
-  id: "flappy_bird"
-  images {
-    image: "/assets/sprites/bird_orange_0.png"
-    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-  }
-  images {
-    image: "/assets/sprites/bird_orange_1.png"
-    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-  }
-  images {
-    image: "/assets/sprites/bird_orange_2.png"
-    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-  }
-  playback: PLAYBACK_LOOP_FORWARD
-  fps: 13
-  flip_horizontal: 0
-  flip_vertical: 0
 }
 animations {
   id: "spark"
@@ -100,7 +69,7 @@ animations {
     sprite_trim_mode: SPRITE_TRIM_MODE_OFF
   }
   playback: PLAYBACK_LOOP_FORWARD
-  fps: 2
+  fps: 4
   flip_horizontal: 0
   flip_vertical: 0
 }

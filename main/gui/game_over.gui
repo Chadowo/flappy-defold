@@ -1,11 +1,11 @@
 script: "/main/scripts/gui/game_over.gui_script"
 fonts {
   name: "score"
-  font: "/assets/score.font"
+  font: "/assets/fonts/score.font"
 }
 textures {
-  name: "textures"
-  texture: "/assets/textures.atlas"
+  name: "gui"
+  texture: "/assets/atlas/gui.atlas"
 }
 background_color {
   x: 0.0
@@ -104,7 +104,7 @@ nodes {
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: "textures/label_game_over"
+  texture: "gui/label_game_over"
   id: "title"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -163,7 +163,7 @@ nodes {
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: "textures/panel_score"
+  texture: "gui/panel_score"
   id: "panel"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -357,7 +357,7 @@ nodes {
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: "textures/medal_bronze"
+  texture: "gui/medal_bronze"
   id: "medal"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -416,7 +416,7 @@ nodes {
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: "textures/label_new"
+  texture: "gui/label_new"
   id: "label_new"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -475,7 +475,7 @@ nodes {
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: "textures/spark"
+  texture: "gui/spark"
   id: "spark"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -534,7 +534,7 @@ nodes {
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: "textures/button_menu"
+  texture: "gui/button_menu"
   id: "button"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE

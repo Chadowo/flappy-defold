@@ -1,11 +1,15 @@
 script: "/main/scripts/gui/menu.gui_script"
 fonts {
   name: "score"
-  font: "/assets/score.font"
+  font: "/assets/fonts/score.font"
 }
 textures {
   name: "textures"
-  texture: "/assets/textures.atlas"
+  texture: "/assets/atlas/textures.atlas"
+}
+textures {
+  name: "gui"
+  texture: "/assets/atlas/gui.atlas"
 }
 background_color {
   x: 0.0
@@ -46,7 +50,7 @@ nodes {
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: "textures/label_flappy_bird"
+  texture: "gui/label_flappy_bird"
   id: "title"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -104,7 +108,7 @@ nodes {
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: "textures/button_play_normal"
+  texture: "gui/button_play_normal"
   id: "start_button"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -196,8 +200,66 @@ nodes {
   visible: true
   material: ""
 }
+nodes {
+  position {
+    x: 180.0
+    y: 320.0
+    z: 2.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.838946
+    y: 6.463327
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  type: TYPE_BOX
+  blend_mode: BLEND_MODE_ALPHA
+  texture: ""
+  id: "black_box"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_CENTER
+  adjust_mode: ADJUST_MODE_FIT
+  layer: "overlay"
+  inherit_alpha: true
+  slice9 {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 0.0
+  }
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: true
+  clipping_inverted: false
+  alpha: 0.0
+  template_node_child: false
+  size_mode: SIZE_MODE_AUTO
+  custom_type: 0
+  enabled: true
+  visible: true
+  material: ""
+}
 layers {
-  name: "background"
+  name: "overlay"
 }
 layers {
   name: "foreground"
