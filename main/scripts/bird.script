@@ -3,7 +3,6 @@ local hashes = require('main/modules/hashes')
 go.property('gravity', 650) 
 go.property('max_falling_speed', 500)
 go.property('flap_force', 280)
-
 go.property('upwards_rotation_speed', 450)
 go.property('downwards_rotation_speed', 200)
 
@@ -47,7 +46,7 @@ function death(self)
 		-- Hide the game HUD
 		msg.post('/interface', hashes.DISAPPEAR)
 
-		-- Display the game over UI
+		-- Display the game-over UI
 		msg.post('/interface_game_over', hashes.SET_SCORE, {self.score}) -- First set score so it can calculate the medal
 		msg.post('/interface_game_over', hashes.APPEAR)
 
@@ -114,20 +113,13 @@ function update(self, dt)
 end
 	
 function on_message(self, message_id, message, sender)
-	if message_id == hashes.COLLISION_RESPONSE then
+	if message_id == hashes.COLLISION_RESPONSE or message_id == hashes.DEATH_OFF_BOUNDS then
 		death(self)
 	end
-
+	
 	if message_id == hashes.GAINED_SCORE then
 		self.score = self.score + 1
 		sound.play('#score_sound')
-	end
-
-	-- Received when trying to pass the pipes by going
-	-- off screen
-	-- TODO: Refactor this
-	if message_id == hashes.DEATH_OFF_BOUNDS then
-		death(self)
 	end
 end
 
