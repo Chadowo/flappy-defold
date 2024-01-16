@@ -14,7 +14,7 @@ fullscreen = 0
 input_method = HiddenInputField
 package = com.chadow.flappydefold
 immersive_mode = 1
-push_field_title = FlappyDefold
+push_field_title = Flappy Defold
 
 [project]
 title = Flappy Defold
@@ -41,4 +41,5 @@ scale_mode = downscale_fit
 
 [osx]
 app_icon = /assets/icon/icon.icns
+bundle_identifier = com.chadow.flappydefold
 
