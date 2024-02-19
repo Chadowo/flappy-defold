@@ -46,7 +46,8 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "<score>"
+  text: "999\n"
+  ""
   font: "score"
   id: "score"
   xanchor: XANCHOR_NONE

@@ -7,6 +7,8 @@ function init(self)
 	self.nodes = {}
 	table.insert(self.nodes, gui.get_node('score'))
 	table.insert(self.nodes, gui.get_node('pause_button'))
+
+	gui.set_text(gui.get_node('score'), 0)
 	
 	self.pause = false
 end
@@ -48,7 +50,7 @@ function on_input(self, action_id, action)
 		if gui.pick_node(gui.get_node('pause_button'), action.x, action.y) then
 			pause_game(self)
 			return true -- Consume input so clicking on the pause button
-						-- won't make a flap
+								-- won't make a flap
 		end
 	elseif action_id == hashes.ESCAPE or action_id == hashes.BACK then
 		if action.pressed then
