@@ -29,7 +29,7 @@ animations {
     sprite_trim_mode: SPRITE_TRIM_MODE_OFF
   }
   playback: PLAYBACK_LOOP_FORWARD
-  fps: 13
+  fps: 18
   flip_horizontal: 0
   flip_vertical: 0
 }
