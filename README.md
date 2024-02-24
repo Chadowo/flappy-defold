@@ -16,15 +16,10 @@ It should work fine on both desktop and mobile platforms, it also has adaptive i
 ## TODO
 
 - Transitions.
-- Tweaking some effects.
 
 ## Play It
 
-You can play it right in your browser from the itch.io page.
-
-<a href="https://chadow.itch.io/flappy-defold">
-  <img src="https://static.itch.io/images/badge.svg" alt="Available on itch.io badge" width=185 height=57>
-</a>
+You can play it right in your browser from the [itch.io page](https://chadow.itch.io/flappy-defold).
 
 ## License
 
