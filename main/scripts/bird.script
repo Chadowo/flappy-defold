@@ -64,6 +64,10 @@ end
 local function flap(self)
 	sound.play('#flap_sound')
 	self.y_vel = self.flap_force
+
+	-- Double the playback rate of the flap animation
+	local playback_rate = go.get("#sprite", "playback_rate")
+	go.set("#sprite", "playback_rate", playback_rate * 2)
 end
 
 local function falling(self)
@@ -74,6 +78,9 @@ local function rotate(self, dt)
 	if self.y_vel > 0 then 
 		self.rotation = self.rotation + self.upwards_rotation_speed * dt
 	elseif falling(self) then
+		-- Set the playback rate back to normal when falling
+		go.set("#sprite", "playback_rate", 1)
+		
 		self.rotation = self.rotation - self.downwards_rotation_speed * dt
 	end
 	self.rotation = utils.clamp(self.rotation, -90, 15)

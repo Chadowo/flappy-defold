@@ -1,29 +1,55 @@
 local hashes = require('main/modules/hashes')
+local utils = require('main/modules/utils')
 
 function init(self)
 	msg.post('.', 'acquire_input_focus')
 	
 	self.started = false
 
+	-- The target score holds the correct score, the current and displayed variables
+	-- are just for counting up to the target score when displaying the player's score
+	-- NOTE: I've taken the implementation of the score counter from one of Defold's 
+	--             own tutorials here: https://defold.com/tutorials/hud/ - Cool stuff!
+	self.target_score = 0
+	self.current_score = 0
+	self.displayed_score = 0
+	
+	self.score_increase_speed = 25
+
 	gui.set_enabled(gui.get_node('root'), false)
 	gui.set_alpha(gui.get_node('title'), 0.0)
 	gui.set_alpha(gui.get_node('button'), 0.0)
+end
+
+function update(self, dt)
+	-- If we started displaying the game over GUI and the current score is 
+	-- less than the target
+	if self.started and self.current_score < self.target_score then
+		self.current_score = self.current_score + self.score_increase_speed   * dt
+		self.current_score = utils.clamp(self.current_score, 0, self.target_score)
+		local floored_score = math.floor(self.current_score) -- To cut off decimals
+
+		-- Update displayed score in case it's different to the floored score
+		if self.displayed_score ~= floored_score then
+			self.displayed_score = floored_score
+			gui.set_text(gui.get_node('score'), self.displayed_score )
+		end
+	end
 end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hashes.APPEAR then
 		gui.set_enabled(gui.get_node('root'), true)
 
+		local score = self.target_score 
+		
 		-- Calculate the reward medal
-		-- FIXME: Replace this if chain
-		local score = tonumber(gui.get_text(gui.get_node('score')))
 		if score < 10 then -- None
 			gui.set_enabled(gui.get_node('medal'), false)
 			-- TODO: randomize position on animation loop
 			gui.set_enabled(gui.get_node('spark'), false)
 		elseif score >= 10 and  score < 20 then -- Bronze
-			-- Leave the medal as it is since the default texture
-			-- texture is bronze
+			-- Leave the medal as it is since the default texture is bronze
 		elseif score >= 20 and score < 30 then -- Silver
 			gui.play_flipbook(gui.get_node('medal'), 'medal_silver')
 		elseif score >= 30 and score < 40 then -- Gold
@@ -48,7 +74,8 @@ function on_message(self, message_id, message, sender)
 	end
 
 	if message_id == hashes.SET_SCORE then
-		gui.set_text(gui.get_node('score'), message[1])
+		self.target_score = message[1]
+		--gui.set_text(gui.get_node('score'), message[1])
 	end
 
 	if message_id == hashes.NEW_HIGHSCORE then
