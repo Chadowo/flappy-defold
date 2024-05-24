@@ -13,7 +13,7 @@ function init(self)
 	self.pause = false
 end
 
-function pause_game(self)
+local function pause_game(self)
 	self.pause = not self.pause
 
 	-- Handle the sprite used
@@ -27,7 +27,7 @@ function pause_game(self)
 	msg.post('main:/controller#controller', 'pause', {self.pause})
 end
 
-function disappear(self)
+local function disappear(self)
 	for i, v in ipairs(self.nodes) do
 		gui.animate(v, 'color.w', 0, gui.EASING_LINEAR, 0.3)
 	end

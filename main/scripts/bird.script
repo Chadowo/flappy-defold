@@ -28,7 +28,7 @@ function init(self)
 	go.set('.', 'euler.z', self.rotation)
 end
 
-function death(self)
+local function death(self)
 	if not self.dead then -- To avoid playing the sound infinitively
 		sound.play('#hit_sound')
 
@@ -71,16 +71,16 @@ function death(self)
 	msg.post('.', 'release_input_focus')
 end
 
-function flap(self)
+local function flap(self)
 	sound.play('#flap_sound')
 	self.y_vel = self.flap_force
 end
 
-function falling(self)
+local function falling(self)
 	return self.y_vel < 0
 end
 
-function rotate(self, dt)
+local function rotate(self, dt)
 	if self.y_vel > 0 then 
 		self.rotation = self.rotation + self.upwards_rotation_speed * dt
 	elseif falling(self) then

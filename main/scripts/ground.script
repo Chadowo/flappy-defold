@@ -6,7 +6,7 @@ function init(self)
 	self.stop = false
 end
 
-function move(self, dt)
+local function move(self, dt)
 	local pos = go.get_position()
 	local size = go.get('#sprite', 'size')
 	local scale = go.get_scale()

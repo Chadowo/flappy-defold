@@ -8,7 +8,7 @@ function init(self)
 	self.instances = {}
 end
 
-function spawn_pipes(self)
+local function spawn_pipes(self)
 	-- Use the fractional part of socket.gettime()
 	-- https://forum.defold.com/t/big-list-of-defold-pro-tips/1519/100
 	math.randomseed(100000 * (socket.gettime() % 1))
@@ -30,7 +30,7 @@ function spawn_pipes(self)
 end
 
 -- Delete all pipes that are offscreen
-function delete_pipes(self)
+local function delete_pipes(self)
 	for i, pipe in ipairs(self.instances) do
 		local pos = go.get_position(pipe)
 		local size = go.get(msg.url(nil, pipe, 'sprite'), 'size')

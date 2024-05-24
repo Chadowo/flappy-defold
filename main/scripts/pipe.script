@@ -8,7 +8,7 @@ function init(self)
 	self.stop = false
 end
 	
-function move_pipe(self, dt)
+local function move_pipe(self, dt)
 	local pos = go.get_position()
 	local size = go.get('#sprite', 'size')
 	local scale = go.get_scale()
@@ -18,7 +18,7 @@ function move_pipe(self, dt)
 	go.set_position(pos)
 end
 
-function player_score(self)
+local function player_score(self)
 	local player_pos = go.get_position('/bird')
 	local pos = go.get_position()
 
@@ -30,7 +30,7 @@ end
 
 -- Kill the player when it is above the screen trying to 
 -- pass the pipe
-function check_player_bounds()
+local function check_player_bounds()
 	local player_id = go.get_id('/bird')
 	local player_pos = go.get_position('/bird')
 	local player_scale = go.get_scale(player_id)

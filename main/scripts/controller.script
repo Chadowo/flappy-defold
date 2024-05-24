@@ -10,30 +10,30 @@ function init(self)
 	load_menu(self)
 end
 
-function load_menu(self)
+local function load_menu(self)
 	msg.post('#menuproxy', 'load')
 	msg.post('#menuproxy', 'enable')
 end
 
-function unload_menu(self)
+local function unload_menu(self)
 	msg.post('#menuproxy', 'unload')
 end
 	
-function load_game(self)
+local function load_game(self)
 	msg.post('#gameproxy', 'load')
 	msg.post('#gameproxy', 'enable')
 end
 
-function unload_game(self)
+local function unload_game(self)
 	msg.post('#gameproxy', 'unload')
 end
 
-function go_to_game(self)
+local function go_to_game(self)
 	unload_menu(self)
 	load_game(self)
 end
 
-function go_to_menu(self)
+local function go_to_menu(self)
 	unload_game(self)
 	load_menu(self)
 end
