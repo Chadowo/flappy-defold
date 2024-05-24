@@ -1,15 +1,5 @@
 local hashes = require('main/modules/hashes')
 
-function init(self)
-	local os = sys.get_sys_info().system_name
-	if os ~= 'Android' or os ~= 'HTML5' then
-		defos.disable_window_resize() -- It will look wonky when resized to any desktop resolution
-	end
-	
-	msg.post('.', 'acquire_input_focus')
-	load_menu(self)
-end
-
 local function load_menu(self)
 	msg.post('#menuproxy', 'load')
 	msg.post('#menuproxy', 'enable')
@@ -18,7 +8,7 @@ end
 local function unload_menu(self)
 	msg.post('#menuproxy', 'unload')
 end
-	
+
 local function load_game(self)
 	msg.post('#gameproxy', 'load')
 	msg.post('#gameproxy', 'enable')
@@ -35,6 +25,16 @@ end
 
 local function go_to_menu(self)
 	unload_game(self)
+	load_menu(self)
+end
+
+function init(self)
+	local os = sys.get_sys_info().system_name
+	if os ~= 'Android' or os ~= 'HTML5' then
+		defos.disable_window_resize() -- It will look wonky when resized to any desktop resolution
+	end
+	
+	msg.post('.', 'acquire_input_focus')
 	load_menu(self)
 end
 

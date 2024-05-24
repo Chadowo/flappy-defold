@@ -3,25 +3,20 @@ local hashes = require('main/modules/hashes')
 go.property('spawn_interval', 1.2)
 go.property('gap_between_pipes', 110)
 
-function init(self)
-	self.spawn_timer = timer.delay(self.spawn_interval, true, spawn_pipes)
-	self.instances = {}
-end
-
 local function spawn_pipes(self)
 	-- Use the fractional part of socket.gettime()
 	-- https://forum.defold.com/t/big-list-of-defold-pro-tips/1519/100
 	math.randomseed(100000 * (socket.gettime() % 1))
-	
+
 	local top_pos = go.get_position()
 	top_pos.y = math.random(500, 700) -- Randomize the position of the first pipe
-	
+
 	local top_pipe = factory.create('#factory', top_pos, nil, nil, 2.0)
 
 	local bottom_props = {gives_score = false}
 	local bottom_pos = go.get_position()
 	bottom_pos.y = top_pos.y - (160 * 2.0) - self.gap_between_pipes
-	
+
 	local bottom_pipe = factory.create('#factory', bottom_pos, nil, bottom_props, 2.0)
 	sprite.set_vflip(bottom_pipe, true) -- Invert vertically
 
@@ -41,6 +36,11 @@ local function delete_pipes(self)
 			table.remove(self.instances, i)
 		end
 	end
+end
+
+function init(self)
+	self.spawn_timer = timer.delay(self.spawn_interval, true, spawn_pipes)
+	self.instances = {}
 end
 
 function update(self, dt)
