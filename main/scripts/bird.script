@@ -1,21 +1,11 @@
 local hashes = require('main/modules/hashes')
+local utils = require('main/modules/utils')
 
 go.property('gravity', 650) 
 go.property('max_falling_speed', 500)
 go.property('flap_force', 280)
 go.property('upwards_rotation_speed', 900)
 go.property('downwards_rotation_speed', 150)
-
--- Clamp a number
-local function clamp(num, min, max)
-	if num < min then
-		num = min
-	elseif num > max then
-		num = max
-	end
-
-	return num
-end
 
 function init(self)
 	msg.post('.', 'acquire_input_focus')
@@ -86,7 +76,7 @@ local function rotate(self, dt)
 	elseif falling(self) then
 		self.rotation = self.rotation - self.downwards_rotation_speed * dt
 	end
-	self.rotation = clamp(self.rotation, -90, 15)
+	self.rotation = utils.clamp(self.rotation, -90, 15)
 
 	go.set('.', 'euler.z', self.rotation)
 end
